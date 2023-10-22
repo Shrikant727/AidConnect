@@ -103,12 +103,6 @@ final AwesomeNotifications awesomeNotifications = AwesomeNotifications();
     iosConfiguration: IosConfiguration(
     ),
   );
-  awesomeNotifications.actionStream.listen((receivedNotification) async {
-        if (receivedNotification.channelKey == 'my_foreground' &&
-            receivedNotification.buttonKeyPressed == 'stop_action') {
-          FlutterBackgroundService().invoke('stopService');
-        }
-      });
 }
 @pragma('vm:entry-point')
 void onStart(ServiceInstance service) async {
@@ -139,12 +133,6 @@ void onStart(ServiceInstance service) async {
             title: 'AWESOME SERVICE',
             body: 'Updated at ${DateTime.now()}',
           ),
-            actionButtons: [
-                      NotificationActionButton(
-                        key: 'stop_action',
-                        label: 'Stop Service',
-                      ),
-                    ],
         );
       }
     }

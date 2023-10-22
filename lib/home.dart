@@ -33,6 +33,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final _passwordController = TextEditingController();
   bool check = false;
+  final service=FlutterBackgroundService();
   final blePeripheral = FlutterBlePeripheral();
   late StreamSubscription<DiscoveredDevice> subscription;
   Map<String, dynamic>userData = {
@@ -178,7 +179,10 @@ class _MyHomePageState extends State<MyHomePage> {
               , child: Text('Stop Signal'),
 
             ),
-
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: ElevatedButton(onPressed: ()=>{service.invoke('stopService')}, child: Text('Quit Background Service')),
+            ),
           ],
         ),
       ),
